@@ -26,7 +26,9 @@ public class Maximumsuche extends PApplet
     //       untersuchtes Element
     // -------------------------------------------------------------------
     // aktuell groesstes Element
+    int aktmax;
     // aktuell untersuchtes Element
+    int akti;
     public int verzoegerung=1000;  // Geschwindigkeit der Ausführung
 
     // Schriften
@@ -132,6 +134,7 @@ public class Maximumsuche extends PApplet
                 // ----------------------------------------------------------------------
                 // ToDo: Falls i dem aktuell untersuchtem oder der aktuellen Maximal-
                 //       position entspricht, muss eine andere Farbe gewählt werden
+                if ( i== aktmax ) fill (250,0,0);
                 // ----------------------------------------------------------------------
 
                 // Balkendiagramm zeichnen
@@ -155,10 +158,10 @@ public class Maximumsuche extends PApplet
         if (zahlen.length == 0){
         return -1;
         }
-        int  aktmax = 0; //aktuelles maximum
-        for (int i=1; i < zahlen.length; i++) {
-            if ( zahlen [i] > zahlen[aktmax]){
-              aktmax=i;
+        aktmax = 0; //aktuelles maximum
+        for (akti=1; akti < zahlen.length; akti++) {
+            if ( zahlen [akti] > zahlen[aktmax]){
+              aktmax=akti;
             }
         }
         // ToDO: Implementiere die Maximumsuche, füge nach jeder Veränderung der
