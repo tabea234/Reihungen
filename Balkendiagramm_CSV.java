@@ -14,6 +14,8 @@ public class Balkendiagramm_CSV extends PApplet
 { 
     // Liste mit allen Werten 
     // Deklariere ein Array zahlen für die Punkte und ein Array namen für die Spielernamen
+    int[]    zahlen;    
+    String[] namen;
     //------------
     // TODO
     //------------
@@ -57,16 +59,21 @@ public class Balkendiagramm_CSV extends PApplet
         // Initialisiere Arrays, in die alle Zeilen der Tabelle passen
         // Die Anzahl der gespeicherten Zeilen bekommt man mit csv.getRowCount()
         //------------
-        // TODO
-        //------------
+        zahlen = new int[csv.getRowCount()];
+        namen = new String[csv.getRowCount()];
 
+        // Fülle die Arrays mit Werten aus der Tabelle
         // Fülle die Arrays mit Werten aus der Tabelle
         // Mit csv.getInt(zeilennummer, "Name der Spalte") oder csv.getInt(zeilennummer, spaltennummer)
         // bekommt man die Werte der Tabelleneinträge als Integer-Wert
         // Informiere dich unter https://processing.org/reference/Table.html, welche Methode geeignet ist,
         // um die Namen der Spieler als String zu bekommen. getInt hilft hier nicht weiter.
         //------------
-        // TODO
+        for (int i = 0; i < zahlen.length; i++) {
+                // Lies Wert aus der i. Zeile und der Spalte "Punkte" bzw. "Name"
+                zahlen[i] = csv.getInt(i, "Punkte");
+                namen[i] = csv.getString(i, "Name");
+        }
         //------------  
     }
 
@@ -87,7 +94,17 @@ public class Balkendiagramm_CSV extends PApplet
         // usw.
         // darstellen. Wandle dazu dein Programm, um die Werte eines Arrays darzustelle ab.
         //------------
-        // TODO
+        for(int i=0; i < zahlen.length; i++) {
+            // Balkendiagramm zeichnen
+            fill(255,255,255);
+            rect(120, 15*i+25, zahlen[i], 13); //2*zahlen[i]
+
+            // Beschriftung
+            fill(255,255,255);
+            textFont(kleineSchrift);  
+            text("i="+i, 2, 38+i*15);
+            text("zahlen["+i+"]="+zahlen[i], 30, 38+i*15);
+        }
         //------------
 
     }
