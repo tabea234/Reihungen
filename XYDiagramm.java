@@ -52,7 +52,8 @@ public class XYDiagramm extends PApplet
         // CSV-Datei laden und anzeigen
         ladeTabelle("data/Amplitudes.csv");
         stroke(250,250,200);
-        zeichneBalken();
+        //zeichneBalken();
+        zeichneDiagramm();
     }
 
     //<>//
@@ -85,7 +86,7 @@ public class XYDiagramm extends PApplet
 
         // Alle Einträge darstellen
         if (x_werte != null) {
-            for (int i = 0; i< x_werte.length; i++) {
+            for (int i = 0; i<= 40; i++) {
 
                 fill(20,25,165);
                 // aktuelle Elemente farblich hervorheben
@@ -97,15 +98,53 @@ public class XYDiagramm extends PApplet
                 } 
 
                 // Balkendiagramm zeichnen
-                if (x_werte[i]>=0) rect(120, 25+i*15, (int) x_werte[i]+ 1 , 13);
+                if (x_werte[i]>=0) rect(120, 25+i*15, (int) y_werte[i]+ 1 , 13);
 
                 // Beschriftung
                 fill(255,255,255);
-                text(""+y_werte[i], 2, 4);
-                text(""+x_werte[i], 70, 4);
+                //text(""+x_werte[i], 70, 38+i*15);
+                text(""+y_werte[i], 2, 38+i*15);
+                
             }
         }
     }
+    
+    public void zeichneDiagramm (){
+        
+         // Überschrift
+        fill(255,255,255);
+        textFont(grosseSchrift);
+        text("x_werte", 2, 20);
+        textFont(kleineSchrift);  
+
+        // Alle Einträge darstellen
+        if (x_werte != null) {
+            for (int i = 0; i<= 40; i++) {
+
+                fill(20,25,165);
+                // aktuelle Elemente farblich hervorheben
+                if (i == akt) {
+                    fill(140,230,20);
+                } 
+                if (i == akt_maximum) {
+                    fill(230,60,140);
+                } 
+
+                // XY-Diagramm zeichnen
+                if (x_werte[i]>=0) point ((float)x_werte[i],(float)y_werte[i]);
+
+                // Beschriftung
+                //fill(255,255,255);
+                //text(""+x_werte[i], 70, 38+i*15);
+                //text(""+y_werte[i], 2, 38+i*15);
+                
+            }
+        }
+    }
+        
+        
+        
+
 
     public int sucheMaximum(int[] zahlen) {
         // Sind überhaupt Daten da?
